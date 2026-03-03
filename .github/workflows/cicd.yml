@@ -1,4 +1,4 @@
- name: my testing cicd
+name: my testing cicd
 on: 
  push:
    branches:
