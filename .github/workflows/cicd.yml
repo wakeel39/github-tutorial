@@ -1,4 +1,4 @@
-name: my testing cicd
+ name: my testing cicd
 on: 
  push:
    branches:
@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: callt the name
-        run: 'calling name'
+        run: echo 'calling name'
         
  
   
