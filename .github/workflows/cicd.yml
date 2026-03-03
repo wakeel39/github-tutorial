@@ -5,12 +5,20 @@ on:
      - main
 
 jobs:
-  Build:
+  job1:
     runs-on: ubuntu-latest
 
     steps:
       - name: callt the name
         run: echo 'calling name'
-        
+
+      - name: testing
+        run : echo "testing here "
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 2nd job testing
+        run: echo 'calling 2nd job'
+   
  
   
