@@ -1,0 +1,16 @@
+name: my testing cicd
+on: 
+ push:
+   branches:
+     - master
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: callt the name
+        run: 'calling name'
+        
+ 
+  
