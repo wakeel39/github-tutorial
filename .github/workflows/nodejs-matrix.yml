@@ -1,0 +1,34 @@
+name: nodejs matrix
+on:
+  push:
+    branches:
+      - main
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x, 24.x]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Start server and check routes
+        run: |
+          node index.js &
+          sleep 3
+          curl -s http://localhost:3000/version | head -20
+          curl -s http://localhost:3000/check | head -20
+          pkill -f "node index.js" || true
