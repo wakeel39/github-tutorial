@@ -1,8 +1,6 @@
-name: deploy flast app on kubernetes
+name: deploy flast app on self-hosted
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 jobs:
   deploy:
     name: Deploy app
@@ -12,6 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
+      - name: docker install
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
+
       - name: Deploy with docker composer
         run: docker compose up -d --build
