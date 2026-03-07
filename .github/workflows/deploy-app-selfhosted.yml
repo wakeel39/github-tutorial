@@ -24,5 +24,5 @@ jobs:
 
       - name: Deploy with docker compose
         run: |
-          sudo usermod -aG docker $USER
+          sudo env DOCKER_USERNAME=$DOCKER_USERNAME docker-compose down
           sudo env DOCKER_USERNAME=$DOCKER_USERNAME docker-compose up -d --build
