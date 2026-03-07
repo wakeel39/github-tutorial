@@ -23,7 +23,7 @@ jobs:
           context: .
           dockerfile: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/GITHUB-TUTORIAL:${{ github.run_number }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/github-tutorial:${{ github.run_number }}
           labels: |
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
