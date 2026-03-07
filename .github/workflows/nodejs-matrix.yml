@@ -7,6 +7,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # continue with other matrix versions even if one fails
       matrix:
         node-version: [18.x, 20.x, 22.x, 24.x]
     steps:
