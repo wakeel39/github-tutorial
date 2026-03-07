@@ -16,9 +16,13 @@ jobs:
           if ! command -v docker &> /dev/null || ! command -v docker-compose &> /dev/null; then
             sudo apt-get update
             sudo apt-get install -y docker-compose
+            sudo apt-get install -y docker.io
+            sudo usermod -aG docker $USER
           else
             echo "Docker and docker-compose already installed."
           fi
 
       - name: Deploy with docker compose
-        run: docker-compose up -d --build
+        run: |
+          sudo usermod -aG docker $USER
+          sudo env DOCKER_USERNAME=$DOCKER_USERNAME docker-compose up -d --build
