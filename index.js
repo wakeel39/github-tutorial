@@ -13,6 +13,12 @@ app.get('/version', (req, res) => {
   res.json(versions);
 });
 
+
+app.get('/', (req, res) => {
+  return res.send('Hello World');
+});
+
+
 // Route 2: simple ping that logs and returns versions
 app.get('/check', (req, res) => {
   const versions = {
