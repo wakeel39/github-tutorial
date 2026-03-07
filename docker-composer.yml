@@ -1,0 +1,6 @@
+services:
+  app:
+    image: ${{ env.DOCKER_USERNAME }}/github-tutorial:latest
+    ports:
+      - 3000:3000
+   
