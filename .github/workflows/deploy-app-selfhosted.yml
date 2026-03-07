@@ -24,4 +24,5 @@ jobs:
 
       - name: Deploy with docker compose
         run: |
-          sudo env DOCKER_USERNAME=$DOCKER_USERNAME docker-compose up -d --build --force-recreate
+          sudo env DOCKER_USERNAME=$DOCKER_USERNAME docker-compose down
+          sudo env DOCKER_USERNAME=$DOCKER_USERNAME docker-compose up -d --build pull always
