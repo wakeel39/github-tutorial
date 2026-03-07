@@ -13,7 +13,7 @@ jobs:
 
       - name: Install Docker and docker-compose if missing
         run: |
-          if ! command -v docker &> /dev/null || ! command -v docker-compose &> /dev/null; then
+          if ! command -v docker.io &> /dev/null || ! command -v docker-compose &> /dev/null; then
             sudo apt-get update
             sudo apt-get install -y docker-compose
             sudo apt-get install -y docker.io
