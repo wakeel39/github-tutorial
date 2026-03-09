@@ -1,8 +1,12 @@
 name: Docker Build and Push
 on:
-  push:
-    branches:
-      - main
+#   push:
+#     branches:
+#       - main
+ workflow_dispatch:
+#  push:
+#    branches:
+#      - main
 jobs:
   build-and-push:
     runs-on: ubuntu-latest

@@ -1,0 +1,34 @@
+# this workflow is used to check the code quality
+# ESLint and SAST: npm audit, and CodeQL
+on:
+  workflow_call:
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter (ESLint)
+        run: npm run lint
+
+      - name: npm audit (dependency vulnerabilities)
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v4
