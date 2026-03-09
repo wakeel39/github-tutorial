@@ -7,7 +7,7 @@ const js = require("@eslint/js");
 module.exports = [
   {
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: 2025,
       sourceType: "script",
       globals: {
         console: "readonly",
