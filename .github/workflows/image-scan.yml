@@ -16,9 +16,10 @@ jobs:
 
         #scan the image for vulnerabilities
       - name: Run image scan
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
-          scan-ref: ${{ secrets.DOCKER_USERNAME }}/github-tutorial:latest
-          severity: 'CRITICAL'
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/github-tutorial:latest
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
           exit-code: '1'

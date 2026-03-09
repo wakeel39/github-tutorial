@@ -26,6 +26,11 @@ jobs:
     uses: ./.github/workflows/image-scan.yml
     secrets: inherit
 
-  deploy-to-server:
-    uses: ./.github/workflows/deploy-to-server.yml
+  build-and-push:
+    needs: [code-quality, secrets-scan, dependency-scan, docker-scan, image-scan]
+    uses: ./.github/workflows/docker-build-push.yml
     secrets: inherit
+
+#   deploy-to-server:
+#     uses: ./.github/workflows/deploy-to-server.yml
+#     secrets: inherit
