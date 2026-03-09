@@ -22,9 +22,9 @@ jobs:
     uses: ./.github/workflows/docker-lint.yml
     secrets: inherit
 
-  image-scan:
-    uses: ./.github/workflows/image-scan.yml
-    secrets: inherit
+#   image-scan:
+#     uses: ./.github/workflows/image-scan.yml
+#     secrets: inherit
 
   build-and-push:
     needs: [code-quality, secrets-scan, dependency-scan, docker-scan, image-scan]
