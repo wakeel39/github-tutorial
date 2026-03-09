@@ -27,7 +27,7 @@ jobs:
 #     secrets: inherit
 
   build-and-push:
-    needs: [code-quality, secrets-scan, dependency-scan, docker-scan, image-scan]
+    needs: [code-quality, secrets-scan, dependency-scan, docker-scan]
     uses: ./.github/workflows/docker-build-push.yml
     secrets: inherit
 
