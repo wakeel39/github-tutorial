@@ -1,6 +1,6 @@
 # Lint Docker Compose files
 # Uses hadolint to lint the Dockerfile
-name: docker lint
+name: docker scan
 on:
   workflow_call:
 jobs:
