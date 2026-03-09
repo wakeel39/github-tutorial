@@ -1,7 +1,9 @@
-# Build stage (optional: use if you need build steps later)
-FROM node:20-alpine AS base
+FROM node:22-alpine
 
 WORKDIR /app
+
+# Upgrade base packages (fixes zlib CVE-2026-22184 and other Alpine CVEs)
+RUN apk update && apk upgrade -a && rm -rf /var/cache/apk/*
 
 # Install dependencies
 COPY package.json package-lock.json ./
