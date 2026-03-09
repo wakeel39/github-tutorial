@@ -19,7 +19,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
-          image-ref: ${{ secrets.DOCKER_USERNAME }}/github-tutorial:latest
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/github-tutorial:${{ github.sha}}
           format: 'table'
           severity: 'CRITICAL,HIGH'
           exit-code: '1'

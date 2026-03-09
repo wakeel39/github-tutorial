@@ -28,9 +28,9 @@ jobs:
             context: .
             push: true
             tags: |
-                ${{ vars.DOCKERHUB_USER }}/github-tutorial:${{ github.ref_name }}
-                ${{ vars.DOCKERHUB_USER }}/github-tutorial:latest
-                ${{ vars.DOCKERHUB_USER }}/github-tutorial:${{ github.sha}}
+                ${{ secrets.DOCKER_USERNAME }}/github-tutorial:${{ github.ref_name }}
+                ${{ secrets.DOCKER_USERNAME }}/github-tutorial:latest
+                ${{ secrets.DOCKER_USERNAME }}/github-tutorial:${{ github.sha}}
 
 
     #  
