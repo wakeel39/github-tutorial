@@ -1,22 +1,28 @@
-name: devsecops pipeline
+name: DEVSECOPS END TO END Pipeline
 on:
   workflow_dispatch:
 jobs:
   
  code-quality:
     uses: ./.github/workflows/code-quality.yml
+    secrets: inherit
 
  secrets-scan:
     uses: ./.github/workflows/secrets-scan.yml
+    secrets: inherit
 
  dependency-scan:
     uses: ./.github/workflows/dependency-scan.yml
+    secrets: inherit
 
  docker-scan:
     uses: ./.github/workflows/docker-lint.yml
+    secrets: inherit
 
  image-scan:
     uses: ./.github/workflows/image-scan.yml
+    secrets: inherit
 
  deploy-to-server:
     uses: ./.github/workflows/deploy-to-server.yml
+    secrets: inherit
