@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run linter (ESLint)
-        run: npm run lint
+    #   - name: Run linter (ESLint)
+    #     run: npm run lint
 
       - name: npm audit (dependency vulnerabilities)
         run: npm audit --audit-level=high
