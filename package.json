@@ -12,5 +12,9 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.0.3"
+  },
+  "overrides": {
+    "minimatch": "10.2.4",
+    "tar": "7.5.10"
   }
 }
