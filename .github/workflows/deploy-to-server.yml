@@ -21,15 +21,16 @@ jobs:
           script: |
             echo "starting deployment"
             mkdir -p devops
+            rm -rf devops/docker-compose.yml
 
-      - name: copy docker-compose.yml to server
+      - name: Copy docker-compose.yml to server
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          source: docker-compose.yml
-          target: /home/ubuntu/devops/docker-compose.yml
+          source: "docker-compose.yml"
+          target: "/home/ubuntu/devops/"
           
 
       - name: ssh to server and run docker-compose up
@@ -39,15 +40,14 @@ jobs:
             username: ${{ secrets.EC2_USERNAME }}
             key: ${{ secrets.EC2_PRIVATE_KEY }}
             script: |
-                echo "deploying app to server composer run"
-                sudo apt-get update
-                sudo apt-get install -y docker.io docker-compose
-                sudo usermod -aG $USER newgrp docker
-                export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
-                sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-                cd /home/ubuntu/devops
-                sudo docker-compose down
-                sudo docker-compose pull
-                sudo docker-compose up -d --build
+              echo "deploying app to server"
+              sudo apt-get update
+              sudo apt-get install -y docker.io docker-compose
+              sudo usermod -aG docker $USER
+              echo "${{ secrets.DOCKER_PASSWORD }}" | sudo docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+              cd /home/ubuntu/devops
+              sudo env DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} docker-compose down
+              sudo env DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} docker-compose pull
+              sudo env DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} docker-compose up -d --build
 
       
